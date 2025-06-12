@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Usuário</title>
+</head>
+<body>
+  <h1>Cadastro de Usuário</h1>
+
+  <form id="formulario">
+    <label>ID:</label><br>
+    <input type="text" id="id"><br><br>
+
+    <label>Nome:</label><br>
+    <input type="text" id="nome"><br><br>
+
+    <label>Matrícula:</label><br>
+    <input type="text" id="matricula"><br><br>
+
+    <label>Função:</label><br>
+    <input type="text" id="funcao"><br><br>
+
+    <button type="submit">Salvar</button>
+  </form>
+
+  <br>
+  <a href="listar.html">Ir para a lista de usuários</a>
+
+  <script>
+    document.getElementById('formulario').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const id = document.getElementById('id').value;
+      const nome = document.getElementById('nome').value;
+      const matricula = document.getElementById('matricula').value;
+      const funcao = document.getElementById('funcao').value;
+
+      const novoUsuario = { id, nome, matricula, funcao };
+
+      let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+      usuarios.push(novoUsuario);
+      localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+      alert('Usuário cadastrado com sucesso!');
+      document.getElementById('formulario').reset();
+    });
+  </script>
+</body>
+</html>
+ 
